@@ -1,83 +1,70 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AIM HEAD ULTRA GOD</title>
-
+<title>AIM HEAD</title>
 <link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="icon.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
 
 <style>
-body{margin:0;background:radial-gradient(circle,#12002b,#000);color:white;font-family:sans-serif;overflow:hidden;}
-canvas{position:absolute;top:0;left:0;}
-#login,#painel{position:absolute;width:100%;height:100%;display:flex;justify-content:center;align-items:center;}
-#painel{display:none;flex-direction:column;}
-.box{background:rgba(255,255,255,0.05);padding:25px;border-radius:15px;backdrop-filter:blur(20px);}
-.card{margin:10px;padding:15px;border-radius:10px;background:rgba(255,255,255,0.05);}
-.range{width:100%;}
+body{
+  margin:0;
+  background:#0b001a;
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  font-family:Arial;
+}
+
+#splash{
+  text-align:center;
+}
+
+#login{
+  display:none;
+  flex-direction:column;
+  gap:10px;
+}
+
+input{
+  padding:10px;
+  border:none;
+  border-radius:10px;
+}
+
+button{
+  padding:10px;
+  border:none;
+  border-radius:10px;
+  background:purple;
+  color:white;
+}
 </style>
 </head>
 
 <body>
 
-<canvas id="bg"></canvas>
+<div id="splash">
+  <h1>🚀 AIM HEAD</h1>
+</div>
 
 <div id="login">
-<div class="box">
-<h2>AIM HEAD</h2>
-<input id="key" placeholder="Key">
-<button onclick="login()">Entrar</button>
-</div>
-</div>
-
-<div id="painel">
-<div class="card">
-Controle
-<input type="range" class="range" oninput="this.nextElementSibling.innerText='Valor: '+this.value">
-<div>Valor: 0</div>
-</div>
+  <h2>Login</h2>
+  <input type="text" placeholder="Digite a key">
+  <button onclick="entrar()">Entrar</button>
 </div>
 
 <script>
-function login(){
-if(key.value==="01"){
-login.style.display="none";
-}
-}
+setTimeout(()=>{
+  document.getElementById("splash").style.display="none";
+  document.getElementById("login").style.display="flex";
+},2000);
 
-// gesto 4 dedos
-document.addEventListener("touchstart",e=>{
-if(e.touches.length>=4){
-painel.style.display="flex";
+function entrar(){
+  alert("Painel liberado 🔥");
 }
-});
-
-// partículas
-const c=document.getElementById("bg");
-const ctx=c.getContext("2d");
-c.width=innerWidth;
-c.height=innerHeight;
-
-let p=[];
-for(let i=0;i<150;i++){
-p.push({x:Math.random()*c.width,y:Math.random()*c.height,s:Math.random()*2});
-}
-
-function draw(){
-ctx.clearRect(0,0,c.width,c.height);
-ctx.fillStyle="white";
-p.forEach(pt=>{
-ctx.beginPath();
-ctx.arc(pt.x,pt.y,pt.s,0,Math.PI*2);
-ctx.fill();
-pt.y+=0.2;
-if(pt.y>c.height) pt.y=0;
-});
-requestAnimationFrame(draw);
-}
-draw();
 </script>
 
 </body>
